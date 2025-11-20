@@ -245,7 +245,7 @@ function Submit(e){
 
     let Email = document.getElementById("email");
 
-    let regexEmail = /@gmail.com/ ;
+    let regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if(!regexEmail.test(Email.value) && Email.value != ""){
         Email.nextElementSibling.innerHTML = "Cette Email Non Valide please entrer cin correct"
