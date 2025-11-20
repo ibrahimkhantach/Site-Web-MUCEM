@@ -1,0 +1,346 @@
+/* ---------------------------------------------------- */
+/* VARIABLES CSS (Meilleure maintenabilité)             */
+/* ---------------------------------------------------- */
+:root {
+    --primary-color: #4F46E5; /* Indigo principal */
+    --light-primary-color: #C7D2FE; /* Indigo clair pour le hover */
+    --background-light: #F8F8FF; /* Un fond légèrement plus clair que blanc (optionnel) */
+    --text-color: #333333; /* Couleur de texte sombre pour le corps */
+    --secondary-text-color: #6B7280; /* Gris plus spécifique pour les descriptions */
+}
+
+/* ---------------------------------------------------- */
+/* BASE / RÉINITIALISATION (Amélioré)                   */
+/* ---------------------------------------------------- */
+/* Utiliser '*' est coûteux en performance, mais efficace pour une petite portée. 
+   On peut cibler plus spécifiquement 'html' et 'body' et utiliser 'box-sizing' pour tous les éléments. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    /* Retiré top/left/right ici car ils ne sont pas utiles sur '*' et peuvent être appliqués sur le body. */
+}
+
+/* Réinitialisation de la marge pour le corps et ancrage de la barre de navigation */
+body {
+    margin: 0;
+    padding-top: 60px; /* Ajuster en fonction de la hauteur de la navbar pour éviter que le contenu ne soit caché */
+    font-family: Arial, sans-serif; /* Application de la police de base */
+    color: var(--text-color);
+    background-color: white; /* Ou var(--background-light) */
+}
+
+/* ---------------------------------------------------- */
+/* NAVBAR (Barre de Navigation)                         */
+/* ---------------------------------------------------- */
+
+
+.navbar {
+    background-color: var(--primary-color);
+    padding: 10px 30px; /* Légèrement réduit la hauteur du padding pour un aspect plus fin */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1000; /* Assure que la barre de navigation est au-dessus des autres éléments */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'une légère ombre */
+    min-height: 60px; /* Hauteur minimale */
+}
+
+/* Brand / logo */
+.navbar .brand {
+    color: white;
+    font-size: 24px; /* Un peu plus grand pour l'impact */
+    font-weight: 700; /* Plus gras */
+    text-decoration: none;
+    letter-spacing: 0.5px; /* Ajout d'un léger espacement */
+}
+
+/* Nav links (Rendre les liens plus accessibles) */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 20px; /* Utilisation de 'gap' au lieu de 'margin-left' pour une meilleure gestion de l'espacement */
+}
+
+
+.navbar button {
+    color: white;
+    background-color: #4F46E5;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.navbar button:hover,
+.navbar button:focus { /* Ajout de ':focus' pour l'accessibilité au clavier */
+    color: var(--light-primary-color);
+    cursor: pointer;
+    /* Ajout d'un effet de soulignement subtil au survol */
+    /* border-bottom: 2px solid var(--light-primary-color); */
+}
+
+/* Hamburger toggle button */
+.navbar .toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px; /* Augmenter la zone de clic */
+    transition: transform 0.3s;
+}
+
+.navbar .toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ---------------------------------------------------- */
+/* BLOCS DE CONTENU (Titres/Descriptions)               */
+/* ---------------------------------------------------- */
+.title {
+    text-align: center;
+    font-size: clamp(32px, 6vw, 60px); /* Utilisation de 'clamp' pour une taille de police plus réactive */
+    color: var(--primary-color);
+    margin-top: 50px; /* Ajusté un peu */
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.description {
+    color: var(--secondary-text-color);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px auto; /* Centrage et ajout de marge en bas */
+    line-height: 1.6;
+}
+
+.container{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 50px;
+}
+/* ---------------------------------------------------- */
+/* FAQ SECTION (Amélioré)                               */
+/* ---------------------------------------------------- */
+#faq {
+    width: 90%; /* Un peu plus large sur les grands écrans */
+    max-width: 900px; /* Limitation de la largeur maximale */
+    /* border: 1px solid var(--primary-color); -> Retiré la bordure pour un look plus moderne */
+    margin: 50px auto;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden; /* Important pour les coins arrondis */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Ajout d'une ombre subtile */
+}
+
+
+.question {
+    padding: 15px 20px; /* Augmenter le padding pour plus d'espace */
+    background-color: var(--primary-color); /* Utilisation de la variable */
+    color: white; /* Couleur du texte en blanc */
+    margin-top: 0; /* Important : retirer la marge pour coller les blocs */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Séparateur léger */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.question:hover {
+    background-color: #6366F1; /* Une teinte légèrement plus foncée que l'indigo */
+}
+
+.action {
+    font-size: 24px; /* Plus visible */
+    font-weight: 600;
+    transition: transform 0.3s;
+    line-height: 1; /* Assure que le signe est bien centré */
+}
+
+/* Rotation de l'icône (par exemple un '+' ou un 'v') lorsque l'accordéon est actif */
+/* .question.active .action {
+    transform: rotate(45deg); 
+} */
+
+.show {
+    /* Cette classe semble être utilisée pour le conteneur de la réponse visible */
+    display: block;
+    padding: 15px 20px;
+    background-color: var(--background-light); /* Utilisation de la variable */
+    height: auto; /* Laisser la hauteur être définie par le contenu */
+    transition: all 0.3s ease-in-out;
+    line-height: 1.6;
+    color: var(--text-color);
+    border-top: 1px solid #E5E7EB; /* Séparation claire de la question */
+}
+
+.hidden {
+    display: none;
+}
+
+.valide{
+    background-color: #00fd3f;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    width: 100%;
+}
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE (Mise à jour)                              */
+/* ---------------------------------------------------- */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px; /* Plus petit padding latéral sur mobile */
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        position: absolute; /* Position absolue par rapport à la navbar */
+        top: 60px; /* Déplacé sous la navbar */
+        left: 0;
+        background-color: var(--primary-color); /* Le menu déroulant a la même couleur de fond */
+        padding: 10px 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none; /* Toujours caché par défaut */
+    }
+
+    .navbar ul.show2 {
+        display: flex;
+    }
+
+    .navbar li {
+        margin: 0;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Séparateur de lien */
+    }
+    
+    .navbar li:last-child {
+        border-bottom: none;
+    }
+    
+    .navbar a {
+        display: block; /* Le lien prend toute la largeur du 'li' */
+        padding: 8px 0;
+    }
+
+    .navbar .toggle {
+        display: flex;
+    }
+}
+
+.container-img {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 100px);
+    gap: 1rem; /* adds spacing between images */
+    grid-template-areas:
+        "img0 img1 img2 img3"
+        "img4 img1 img2 img3"
+        "img5 img6 img6 img3"
+        "img7 img6 img6 img8"
+        "img9 img9 img9 img9";
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem; /* optional: adds subtle corners */
+}
+
+.i0 { grid-area: img0; }
+.i1 { grid-area: img1; }
+.i2 { grid-area: img2; }
+.i3 { grid-area: img3; }
+.i4 { grid-area: img4; }
+.i5 { grid-area: img5; }
+.i6 { grid-area: img6; }
+.i7 { grid-area: img7; }
+.i8 { grid-area: img8; }
+.i9 { grid-area: img9; }
+
+/* Container principal du formulaire */
+.form {
+    width: 90%;              /* Prend 90% sur mobile */
+    max-width: 500px;        /* Ne dépasse jamais 500px sur PC */
+    margin: 80px auto;       /* Centrage horizontal */
+    
+    padding: 2rem;           /* Espace interne pour aérer le contenu */
+    background-color: #4F46E5;
+    color: white;
+    border-radius: 12px;     /* Arrondis plus doux */
+    
+    /* Utilisation de Flexbox pour aligner les enfants verticalement */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;               /* Espace automatique entre les éléments */
+    
+    /* Ombre portée douce pour donner du relief */
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+}
+
+/* Style des labels */
+.form label {
+    text-align: left;        /* Plus lisible aligné à gauche */
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;      /* Petit espace avant l'input */
+}
+
+/* Style des champs de saisie */
+.form input {
+    padding: 12px 15px;      /* Plus d'espace pour le texte */
+    border-radius: 8px;
+    border: 2px solid transparent; /* Prépare la bordure pour le focus */
+    background-color: white;
+    font-size: 1rem;
+    outline: none;           /* Enlève le contour par défaut du navigateur */
+    transition: all 0.3s ease;
+}
+
+/* Effet quand on clique dans l'input */
+.form input:focus {
+    border-color: #a5a6f6;   /* Bordure plus claire au focus */
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2); /* Halo lumineux */
+}
+
+.form input[type="button"]{
+    margin-top: 20px;
+    
+}
+
+.form input[type="button"]:hover{
+    background-color: #4F46E5;
+    color: white;
+    border:2px solid white;
+    cursor: pointer;
+
+}
+
+@media  screen and (max-width : 768px) {
+    .container-img{
+        display: block;
+        width: 100%;
+    }
+}
